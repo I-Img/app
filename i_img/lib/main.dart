@@ -1,4 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:iimg/compents/buttomNav.dart';
+import 'package:iimg/compents/waterfall.dart';
+import 'package:iimg/view/home.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,22 +26,17 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      initialRoute: '/',
+      routes: {
+        "home": (context) => Home(),
+      },
+      home: MyHomePage(title: 'I-IMG'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -44,68 +45,52 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  Random rnd = new Random();
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
+  List<String> urls = [
+    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585654703340&di=d8becea6fd14350f82829f2a134aac34&imgtype=0&src=http%3A%2F%2Ft7.baidu.com%2Fit%2Fu%3D2436905109%2C3905541917%26fm%3D79%26app%3D86%26f%3DJPEG%3Fw%3D1000%26h%3D1500',
+    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585653374152&di=b6f69ef7f63e909da8029e3ed7f43dfd&imgtype=0&src=http%3A%2F%2Ft7.baidu.com%2Fit%2Fu%3D3293692353%2C1129942707%26fm%3D79%26app%3D86%26f%3DJPEG%3Fw%3D1280%26h%3D1920',
+    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585654766042&di=56ba6bfb0ca0ed3565611cea2c7a29ff&imgtype=0&src=http%3A%2F%2Ft9.baidu.com%2Fit%2Fu%3D2711106734%2C4181328260%26fm%3D79%26app%3D86%26f%3DJPEG%3Fw%3D1200%26h%3D800',
+    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585654778391&di=e128c0620c5079d87249a119f6657e40&imgtype=0&src=http%3A%2F%2Ft8.baidu.com%2Fit%2Fu%3D2030094778%2C4096889353%26fm%3D79%26app%3D86%26f%3DJPEG%3Fw%3D909%26h%3D605',
+    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585654814135&di=ca51ab45e6415b8ecdaf46dca6a7501f&imgtype=0&src=http%3A%2F%2Ft8.baidu.com%2Fit%2Fu%3D984622012%2C3258747915%26fm%3D79%26app%3D86%26f%3DJPEG%3Fw%3D1200%26h%3D800'
+  ];
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
-      ),
+      body: new StaggeredGridView.countBuilder(
+          crossAxisCount: 4,
+          mainAxisSpacing: 4.0,
+          crossAxisSpacing: 4.0,
+          itemBuilder: (context, index) {
+            var width = 0.0;
+            switch (rnd.nextInt(4)) {
+              case 0:
+                width = rnd.nextInt(400) + 0.0;
+                break;
+              case 1:
+                width = rnd.nextInt(500) + 0.0;
+                break;
+              case 2:
+                width = rnd.nextInt(600) + 0.0;
+                break;
+              case 3:
+                width = rnd.nextInt(700) + 0.0;
+                break;
+              default:
+            }
+
+            if (width < 300) {
+              width += 300.0;
+            }
+            return Tile(urls[rnd.nextInt(4)], width);
+          },
+          staggeredTileBuilder: (index) => new StaggeredTile.fit(2)),
+      bottomNavigationBar: BottomNav(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        onPressed: () {},
+        child: Icon(Icons.search),
+      ),
     );
   }
 }
