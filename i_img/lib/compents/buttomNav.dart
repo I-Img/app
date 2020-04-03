@@ -21,7 +21,7 @@ class BottomNavState extends State<BottomNav> {
               Icons.home,
               color: Colors.white,
             ),
-            onPressed: () {},
+            onPressed: () => Navigator.pushNamed(context, "/"),
           ),
           IconButton(
             icon: Icon(
@@ -36,7 +36,7 @@ class BottomNavState extends State<BottomNav> {
               Icons.category,
               color: Colors.white,
             ),
-            onPressed: () {},
+            onPressed: () => Navigator.pushNamed(context, "category"),
           ),
           IconButton(
             icon: Icon(

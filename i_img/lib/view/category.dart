@@ -1,54 +1,16 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:iimg/compents/buttomNav.dart';
-import 'package:iimg/compents/waterfall.dart';
-import 'package:iimg/view/category.dart';
-import 'package:iimg/view/home.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:iimg/compents/buttomNav.dart';
+import 'package:iimg/compents/category.dart';
 
-import 'compents/category.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class Category extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'I-IMG',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      initialRoute: '/',
-      routes: {
-        "home": (context) => Home(),
-        "category": (context) => Category(),
-      },
-      home: MyHomePage(title: 'I-IMG'),
-    );
+  State<StatefulWidget> createState() {
+    return new CategoryState();
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class CategoryState extends State<Category> {
   final List<CategoryUrlAndName> metadata = [
     CategoryUrlAndName(
       "http://172.21.111.230/ae6cc8df0148ae7527e7c2cd8c514a97d1a98e3a.jpg",
@@ -126,7 +88,6 @@ class _MyHomePageState extends State<MyHomePage> {
     const StaggeredTile.count(2, 4),
     const StaggeredTile.count(4, 2),
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

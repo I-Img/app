@@ -14,12 +14,12 @@ class Tile extends StatelessWidget {
         children: <Widget>[
           new Center(
             child: Padding(
-              padding: EdgeInsets.only(left: 2.5, right: 2.5, top: 3),
+              padding: EdgeInsets.only(left: 1.5, right: 1.5, top: 3),
               child: new FadeInImage.memoryNetwork(
                 placeholder: kTransparentImage,
                 image: this.url,
-                height: this.height,
-                fit: BoxFit.fitHeight,
+                // height: this.height,
+                fit: BoxFit.cover,
               ),
             ),
           )
