@@ -11,6 +11,13 @@ class CategoryUrlAndName {
   CategoryUrlAndName(this.url, {this.name});
 }
 
+class CategoryWithUrlAndTiles {
+  final List<CategoryUrlAndName> url;
+  final List<StaggeredTile> tile;
+
+  CategoryWithUrlAndTiles(this.url, this.tile);
+}
+
 class CategoryDetail extends StatelessWidget {
   final List<CategoryUrlAndName> metadata;
   final List<StaggeredTile> staggeredTiles;
@@ -79,11 +86,15 @@ class _catgory extends StatelessWidget {
     return new InkWell(
         child: Padding(
       padding: EdgeInsets.all(2.5),
-      child: FadeInImage.memoryNetwork(
-        placeholder: kTransparentImage,
-        image: this.url,
+      child: Image.network(
+        this.url,
         fit: BoxFit.fitHeight,
       ),
+//      child: FadeInImage.memoryNetwork(
+//        placeholder: kTransparentImage,
+//        image: this.url,
+//        fit: BoxFit.fitHeight,
+//      ),
     ));
   }
 }
